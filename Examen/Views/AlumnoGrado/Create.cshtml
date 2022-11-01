@@ -1,0 +1,22 @@
+﻿@using Examen.Database.Tables;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model AlumnoGrado
+
+}
+
+@using (Html.BeginForm("Create", "AlumnoGrado", FormMethod.Post))
+{
+
+    @Html.Label("Alumno")
+    @Html.DropDownListFor(m => m.alumno_id, ListAlumnos.ItemSelect(Model?.alumno_id.ToString() ?? ""), "Selecciona un alumno", new { @class = "form-control"})
+    @Html.ValidationMessageFor(model => model.alumno_id, "", new { @class = "text-danger" })
+    
+    @Html.Label("Grado")
+    @Html.DropDownListFor(m => m.grado_id, ListGrados.ItemSelect(Model?.grado_id.ToString() ?? ""), "Selecciona un grado", new { @class = "form-control"})
+    @Html.ValidationMessageFor(model => model.grado_id, "", new { @class = "text-danger" })
+
+    <button type="submit">Guardar</button>
+}

@@ -1,0 +1,36 @@
+﻿@using Examen.Database.Tables;
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+    List<Alumno> alumnos = Alumno.Get();
+}
+
+@Html.ActionLink("Create", "Create")
+<br>
+
+<table>
+    <tr>  
+        <th>Fecha Nacimiento</th>
+        <th>Nombre</th>
+        <th>Apellidos</th>
+        <th>Genero</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var alumno in alumnos)
+    {
+        <tr> 
+            <td>@alumno.fecha_nacimiento.ToString("dd-MM-yyyy")</td>
+            <td>@alumno.nombre</td>
+            <td>@alumno.apellidos</td>
+            <td>@(string.Format("{0}", (Genero)alumno.genero))</td>
+                <td>
+                @Html.ActionLink("View", "Details", new { id = alumno.id }) <br>
+                @Html.ActionLink("Edit", "Edit", new { id = alumno.id })<br>
+                @Html.ActionLink("Delete", "Delete", new { id = alumno.id })
+                </td>
+        </tr>
+    }
+</table>
